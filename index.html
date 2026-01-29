@@ -2,50 +2,124 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love You</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
+      padding: 20px;
+      background: radial-gradient(circle at top, #ff9acb, #7b2cbf, #240046);
+      animation: bgMove 15s ease infinite;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 60px 80px;
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* AURORA */
+    .aurora {
+      position: absolute;
+      inset: -50%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+      filter: blur(120px);
+      animation: auroraMove 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes auroraMove {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* PARTÍCULAS */
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 0; }
+      to { transform: translateY(-20vh); opacity: 1; }
+    }
+
+    /* INTRO */
+    .intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: introFade 3s forwards;
+      z-index: 10;
+    }
+
+    .intro h2 {
+      color: #fff;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.5rem, 6vw, 4rem);
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes introFade {
+      0% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: clamp(40px, 6vw, 70px);
+      text-align: center;
+      box-shadow:
+        0 0 40px rgba(255,255,255,0.15),
+        0 25px 60px rgba(0,0,0,0.4);
+      color: #fff;
+      z-index: 2;
+      animation: fadeUp 1.5s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      margin-bottom: 20px;
+      font-size: clamp(2.5rem, 7vw, 4rem);
       letter-spacing: 2px;
     }
 
-    p {
-      font-size: 1.5rem;
-      font-weight: 300;
-    }
-
-    .heart {
-      font-size: 3rem;
-      margin: 20px 0;
+    .heart-main {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      margin: 15px 0;
       animation: pulse 1.2s infinite;
     }
 
@@ -55,25 +129,89 @@
       100% { transform: scale(1); }
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .name {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    /* CORAÇÕES TAP */
+    .tap-heart {
+      position: fixed;
+      pointer-events: none;
+      animation: floatHeart 1.8s ease forwards;
+      z-index: 20;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: scale(1) translateY(0); opacity: 1; }
+      100% { transform: scale(1.6) translateY(-150px); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>I Love You</h1>
-    <div class="heart">❤️</div>
-    <p>Para <strong>Júlia Karoline</strong></p>
+  <div class="aurora"></div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>Para alguém especial…</h2>
   </div>
+
+  <!-- PARTÍCULAS -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = 6 + Math.random() * 6 + "s";
+      p.style.opacity = Math.random();
+      document.body.appendChild(p);
+    }
+  </script>
+
+  <!-- CONTEÚDO -->
+  <div class="card">
+    <h1>I Love You !!!</h1>
+    <div class="heart-main">❤️</div>
+    <div class="name">Para Júlia Karoline</div>
+  </div>
+
+  <!-- TAP / LONG PRESS -->
+  <script>
+    const hearts = ["💖","💜","🤍","💗","💞"];
+    let pressTimer;
+
+    function createHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "tap-heart";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      heart.style.fontSize = 18 + Math.random() * 22 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1800);
+    }
+
+    document.addEventListener("click", e => {
+      for (let i = 0; i < 6; i++) {
+        createHeart(
+          e.clientX + Math.random() * 30 - 15,
+          e.clientY + Math.random() * 30 - 15
+        );
+      }
+    });
+
+    document.addEventListener("mousedown", e => {
+      pressTimer = setInterval(() => {
+        createHeart(
+          Math.random() * window.innerWidth,
+          window.innerHeight
+        );
+      }, 120);
+    });
+
+    document.addEventListener("mouseup", () => clearInterval(pressTimer));
+  </script>
 
 </body>
 </html>
