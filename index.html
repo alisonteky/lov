@@ -1,268 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Santa Branca Transportes</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset simples */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You 2.0</title>
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      color: #222;
-      overflow-x: hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+<style>
+  /* RESET */
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+    background-size: 200% 200%;
+    animation: bgMove 30s ease infinite;
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+    color: #fff;
+  }
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+  /* AURORA PREMIUM */
+  .aurora {
+    position: absolute; inset: -50%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+    filter: blur(200px);
+    animation: auroraMove 45s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes auroraMove { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
 
-    header .logo img {
-      height: 50px;
-    }
+  /* ESTRELAS */
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: white; border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes twinkle {
+    0%,100%{opacity:0.2; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.5);}
+  }
 
-    nav {
-      display: flex;
-      gap: 1.5rem;
-    }
+  /* CARD PREMIUM */
+  .card {
+    position: relative;
+    width: 100%; max-width: 500px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(35px);
+    border-radius: 50px;
+    padding: clamp(50px,8vw,90px) clamp(30px,6vw,70px);
+    text-align: center;
+    box-shadow: 0 30px 120px rgba(0,0,0,0.7),0 0 2px 1px rgba(255,255,255,0.15) inset;
+    color: #fff;
+    z-index: 2;
+    animation: cardEnter 2s ease forwards;
+  }
 
-    nav a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #111;
-      position: relative;
-      padding: 0.3rem 0;
-      transition: color 0.3s;
-    }
+  @keyframes cardEnter {
+    0% {opacity:0; transform: translateY(80px) scale(0.85);}
+    60% {opacity:1; transform: translateY(-10px) scale(1.05);}
+    80% {transform: translateY(5px) scale(0.98);}
+    100% {transform: translateY(0) scale(1);}
+  }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #e63946;
-      transition: 0.3s;
-    }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem,8vw,5rem);
+    text-shadow: 0 8px 35px rgba(0,0,0,0.6);
+    margin-bottom: 25px;
+    animation: textFade 2s ease forwards;
+  }
 
-    nav a:hover {
-      color: #e63946;
-    }
+  .heart-main {
+    font-size: clamp(4rem,12vw,6rem);
+    margin: 30px 0;
+    background: radial-gradient(circle at 30% 30%, #ff9acb, #ff5e5e);
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 6px 20px rgba(255,100,150,0.8));
+    animation: pulse 1.2s infinite, heartFloat 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
+  @keyframes heartFloat { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
 
-    nav a:hover::after {
-      width: 100%;
-    }
+  .name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem,7vw,4rem);
+    text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    margin-top: 15px;
+    line-height: 1.2;
+    animation: textFade 2.5s ease forwards;
+  }
 
-    /* Hero Section */
-    .hero {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: url('https://images.unsplash.com/photo-1584551880295-c78e3c138c79?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
-      position: relative;
-      color: #fff;
-    }
+  @keyframes textFade { 0%{opacity:0; transform:translateY(20px);}100%{opacity:1; transform:translateY(0);} }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-    }
+  /* TAP / LONG PRESS CORAÇÕES */
+  .tap-heart {
+    position: fixed;
+    pointer-events: none;
+    animation: floatHeart 2s ease forwards;
+    z-index: 20;
+    filter: drop-shadow(0 3px 12px rgba(255,100,150,0.8));
+    background: linear-gradient(45deg,#ff9acb,#ff5e5e);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  @keyframes floatHeart {
+    0% { transform: scale(1) translateY(0); opacity:1;}
+    50% { transform: scale(1.4) translateY(-80px);}
+    100% { transform: scale(1.8) translateY(-180px); opacity:0;}
+  }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .hero h1 {
-      font-family: 'Raleway', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero a {
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      background: #e63946;
-      color: #fff;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .hero a:hover {
-      background: #d62828;
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Section Cards */
-    .section {
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      padding: 2rem;
-      border-radius: 20px;
-      max-width: 500px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-    }
-
-    .card h2 {
-      margin-bottom: 1rem;
-      color: #e63946;
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .card p {
-      font-size: 1rem;
-      color: #111;
-    }
-
-    .card a {
-      margin-top: 1rem;
-      display: inline-block;
-      color: #e63946;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* Footer */
-    footer {
-      background: #1d3557;
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    footer a {
-      color: #e63946;
-      text-decoration: none;
-    }
-
-    /* Responsividade Mobile-First */
-    @media(min-width: 768px) {
-      nav { gap: 2.5rem; }
-      .hero h1 { font-size: 3rem; }
-      .hero p { font-size: 1.4rem; }
-      .section { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-    }
-
-    @media(min-width: 1200px) {
-      .hero h1 { font-size: 4rem; }
-      .hero p { font-size: 1.6rem; }
-    }
-  </style>
+  /* RESPONSIVIDADE */
+  @media (max-width: 768px) {
+    .card { padding: 40px 30px; }
+    .heart-main { font-size: clamp(3rem,10vw,5rem); }
+    h1 { font-size: clamp(2.5rem,10vw,4rem); }
+    .name { font-size: clamp(2rem,8vw,3.5rem); }
+  }
+  @media (max-width: 480px) {
+    .card { max-width: 90%; padding: 30px 20px; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="3b6164e7-85b5-4eed-83b5-663196c34585.png" alt="Santa Branca Transportes">
-      <span>Santa Branca Transportes</span>
-    </div>
-    <nav>
-      <a href="#horarios">Horários</a>
-      <a href="#itinerarios">Itinerários</a>
-      <a href="#bilhetagem">Bilhetagem</a>
-      <a href="#contato">Fale Conosco</a>
-    </nav>
-  </header>
+<div class="aurora"></div>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Bem-vindo à Santa Branca Transportes</h1>
-      <p>Seu transporte seguro, confiável e moderno. Acompanhe horários, itinerários e tarifas atualizadas.</p>
-      <a href="#horarios">Confira Horários</a>
-    </div>
-  </section>
+<!-- CARD -->
+<div class="card">
+  <h1>I Love You</h1>
+  <div class="heart-main">❤️</div>
+  <div class="name">Para Júlia Karoline</div>
+</div>
 
-  <section class="section" id="horarios">
-    <div class="card">
-      <h2>Atendimento ao Cliente</h2>
-      <p>Ligue para nossa central: <strong>0800 701 05 02</strong></p>
-      <a href="mailto:contato@santabranca.com">Envie um e-mail</a>
-    </div>
+<!-- PARTICULAS E ESTRELAS -->
+<script>
+  // ESTRELAS
+  const starsCount = 80;
+  for(let i=0;i<starsCount;i++){
+    const star = document.createElement('div');
+    star.className='star';
+    star.style.left=Math.random()*100+'vw';
+    star.style.top=Math.random()*100+'vh';
+    star.style.width=1+Math.random()*2+'px';
+    star.style.height=star.style.width;
+    star.style.animationDuration=2+Math.random()*3+'s';
+    document.body.appendChild(star);
+  }
 
-    <div class="card" id="itinerarios">
-      <h2>Alterações de Horários</h2>
-      <p>A partir de 15/09/2025, alterações na Linha 5113 – Santa Branca x Jacareí.</p>
-      <a href="#">Clique aqui para ver horários</a>
-    </div>
+  // CORAÇÕES TAP / LONG PRESS
+  const hearts=["💖","💜","🤍","💗","💞","❤️"];
+  let pressTimer;
 
-    <div class="card" id="bilhetagem">
-      <h2>Tarifa</h2>
-      <p>A partir de 06/01/2026:</p>
-      <p>Tarifa Integral: R$ 6,10</p>
-      <p>Tarifa Escolar: R$ 3,05</p>
-    </div>
-  </section>
+  function createHeart(x,y){
+    const heart=document.createElement("div");
+    heart.className="tap-heart";
+    heart.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+    heart.style.left=x+"px";
+    heart.style.top=y+"px";
+    heart.style.fontSize=18+Math.random()*28+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),2000);
+  }
 
-  <footer id="contato">
-    <p>Av. Getulio Vargas 3450 Jd. Luiza Jacareí - SP CEP 12305-903</p>
-    <p>Telefone: (12) 3955-4744 | <a href="mailto:contato@santabranca.com">contato@santabranca.com</a></p>
-    <p>© 2026 Santa Branca Transportes. Todos os direitos reservados.</p>
-  </footer>
+  function getPos(e){
+    if(e.touches) return {x:e.touches[0].clientX,y:e.touches[0].clientY};
+    return {x:e.clientX,y:e.clientY};
+  }
 
-  <script>
-    // Smooth scroll menu
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
+  document.addEventListener("click",e=>{
+    const {x,y}=getPos(e);
+    for(let i=0;i<6;i++) createHeart(x+Math.random()*40-20,y+Math.random()*40-20);
+  });
+
+  function startHeartRain(){ pressTimer=setInterval(()=>createHeart(Math.random()*innerWidth,innerHeight),120); }
+  function stopHeartRain(){ clearInterval(pressTimer); }
+
+  document.addEventListener("mousedown", startHeartRain);
+  document.addEventListener("mouseup", stopHeartRain);
+  document.addEventListener("mouseleave", stopHeartRain);
+  document.addEventListener("touchstart", e=>{e.preventDefault(); startHeartRain();},{passive:false});
+  document.addEventListener("touchend", stopHeartRain);
+  document.addEventListener("touchcancel", stopHeartRain);
+</script>
 
 </body>
 </html>
