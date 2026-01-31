@@ -3,245 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Love You</title>
-
-  <!-- Fontes -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-
+  <title>Santa Branca Transportes</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* RESET */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Reset simples */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      color: #222;
+      overflow-x: hidden;
     }
 
-    body, html {
-      width: 100%;
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      background: radial-gradient(circle at top, #ff9acb, #7b2cbf, #240046);
-      background-size: 200% 200%;
-      animation: bgMove 20s ease infinite;
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header .logo img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #111;
+      position: relative;
+      padding: 0.3rem 0;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #e63946;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #e63946;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
-    }
-
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* AURORA */
-    .aurora {
-      position: absolute;
-      inset: -50%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-      filter: blur(150px);
-      animation: auroraMove 30s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes auroraMove {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* PARTICULAS */
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 50%;
-      animation: float 10s linear infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(110vh); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-20vh); opacity: 0; }
-    }
-
-    /* INTRO */
-    .intro {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: introFade 3s forwards;
-      z-index: 10;
-    }
-
-    .intro h2 {
-      color: #fff;
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.5rem, 6vw, 4rem);
       text-align: center;
-      padding: 0 20px;
-    }
-
-    @keyframes introFade {
-      0%, 70% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    /* CARD */
-    .card {
+      background: url('https://images.unsplash.com/photo-1584551880295-c78e3c138c79?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
       position: relative;
-      width: 100%;
-      max-width: 450px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(25px);
-      border-radius: 35px;
-      padding: clamp(50px, 8vw, 80px) clamp(30px, 6vw, 60px);
-      text-align: center;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 
-                  0 0 0 1px rgba(255,255,255,0.2) inset;
       color: #fff;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .hero-content {
+      position: relative;
       z-index: 2;
-      animation: fadeUp 1.5s ease;
+      max-width: 700px;
+      animation: fadeInUp 1s ease forwards;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hero h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5rem);
-      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      margin-bottom: 15px;
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
 
-    .heart-main {
-      font-size: clamp(4rem, 10vw, 6rem);
-      margin: 25px 0;
-      animation: pulse 1.2s infinite;
-      filter: drop-shadow(0 4px 15px rgba(255,100,150,0.6));
+    .hero a {
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      background: #e63946;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+    .hero a:hover {
+      background: #d62828;
     }
 
-    .name {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.5rem, 7vw, 4rem);
-      text-shadow: 0 3px 15px rgba(0,0,0,0.3);
-      margin-top: 10px;
-      line-height: 1.2;
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* CORAÇÕES */
-    .tap-heart {
-      position: fixed;
-      pointer-events: none;
-      animation: floatHeart 1.8s ease forwards;
-      z-index: 20;
-      filter: drop-shadow(0 2px 8px rgba(255,100,150,0.5));
+    /* Section Cards */
+    .section {
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
     }
 
-    @keyframes floatHeart {
-      0% { transform: scale(1) translateY(0); opacity: 1; }
-      100% { transform: scale(1.6) translateY(-160px); opacity: 0; }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
 
-    /* RESPONSIVIDADE */
-    @media (max-width: 768px) {
-      .card { padding: 40px 30px; }
-      .heart-main { font-size: clamp(3rem, 12vw, 5rem); }
-      h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
-      .name { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
     }
 
-    @media (max-width: 480px) {
-      .card { max-width: 90%; padding: 30px 20px; }
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #e63946;
+      font-family: 'Raleway', sans-serif;
     }
 
+    .card p {
+      font-size: 1rem;
+      color: #111;
+    }
+
+    .card a {
+      margin-top: 1rem;
+      display: inline-block;
+      color: #e63946;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: #1d3557;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer a {
+      color: #e63946;
+      text-decoration: none;
+    }
+
+    /* Responsividade Mobile-First */
+    @media(min-width: 768px) {
+      nav { gap: 2.5rem; }
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.4rem; }
+      .section { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media(min-width: 1200px) {
+      .hero h1 { font-size: 4rem; }
+      .hero p { font-size: 1.6rem; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="aurora"></div>
+  <header>
+    <div class="logo">
+      <img src="3b6164e7-85b5-4eed-83b5-663196c34585.png" alt="Santa Branca Transportes">
+      <span>Santa Branca Transportes</span>
+    </div>
+    <nav>
+      <a href="#horarios">Horários</a>
+      <a href="#itinerarios">Itinerários</a>
+      <a href="#bilhetagem">Bilhetagem</a>
+      <a href="#contato">Fale Conosco</a>
+    </nav>
+  </header>
 
-  <!-- INTRO -->
-  <div class="intro">
-    <h2>Um carinho especial...</h2>
-  </div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bem-vindo à Santa Branca Transportes</h1>
+      <p>Seu transporte seguro, confiável e moderno. Acompanhe horários, itinerários e tarifas atualizadas.</p>
+      <a href="#horarios">Confira Horários</a>
+    </div>
+  </section>
 
-  <!-- CARD -->
-  <div class="card">
-    <h1>I Love You</h1>
-    <div class="heart-main">❤️</div>
-    <div class="name">Para Júlia Karoline</div>
-  </div>
+  <section class="section" id="horarios">
+    <div class="card">
+      <h2>Atendimento ao Cliente</h2>
+      <p>Ligue para nossa central: <strong>0800 701 05 02</strong></p>
+      <a href="mailto:contato@santabranca.com">Envie um e-mail</a>
+    </div>
 
-  <!-- PARTICULAS -->
+    <div class="card" id="itinerarios">
+      <h2>Alterações de Horários</h2>
+      <p>A partir de 15/09/2025, alterações na Linha 5113 – Santa Branca x Jacareí.</p>
+      <a href="#">Clique aqui para ver horários</a>
+    </div>
+
+    <div class="card" id="bilhetagem">
+      <h2>Tarifa</h2>
+      <p>A partir de 06/01/2026:</p>
+      <p>Tarifa Integral: R$ 6,10</p>
+      <p>Tarifa Escolar: R$ 3,05</p>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <p>Av. Getulio Vargas 3450 Jd. Luiza Jacareí - SP CEP 12305-903</p>
+    <p>Telefone: (12) 3955-4744 | <a href="mailto:contato@santabranca.com">contato@santabranca.com</a></p>
+    <p>© 2026 Santa Branca Transportes. Todos os direitos reservados.</p>
+  </footer>
+
   <script>
-    const particleCount = 50;
-    for (let i = 0; i < particleCount; i++) {
-      const p = document.createElement("div");
-      p.className = "particle";
-      p.style.left = Math.random() * 100 + "vw";
-      p.style.animationDuration = 6 + Math.random() * 6 + "s";
-      p.style.animationDelay = Math.random() * 3 + "s";
-      document.body.appendChild(p);
-    }
-  </script>
-
-  <!-- TAP / LONG PRESS (DESKTOP + MOBILE) -->
-  <script>
-    const hearts = ["💖","💜","🤍","💗","💞","❤️"];
-    let pressTimer;
-
-    function createHeart(x, y) {
-      const heart = document.createElement("div");
-      heart.className = "tap-heart";
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = x + "px";
-      heart.style.top = y + "px";
-      heart.style.fontSize = 20 + Math.random() * 25 + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1800);
-    }
-
-    function getPos(e) {
-      if (e.touches) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      return { x: e.clientX, y: e.clientY };
-    }
-
-    document.addEventListener("click", e => {
-      const { x, y } = getPos(e);
-      for (let i = 0; i < 6; i++) createHeart(x + Math.random()*40-20, y + Math.random()*40-20);
+    // Smooth scroll menu
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
     });
-
-    function startHeartRain() {
-      pressTimer = setInterval(() => {
-        createHeart(Math.random()*innerWidth, innerHeight);
-      }, 120);
-    }
-
-    function stopHeartRain() { clearInterval(pressTimer); }
-
-    document.addEventListener("mousedown", startHeartRain);
-    document.addEventListener("mouseup", stopHeartRain);
-    document.addEventListener("mouseleave", stopHeartRain);
-    document.addEventListener("touchstart", e => { e.preventDefault(); startHeartRain(); }, { passive: false });
-    document.addEventListener("touchend", stopHeartRain);
-    document.addEventListener("touchcancel", stopHeartRain);
   </script>
 
 </body>
